@@ -10,9 +10,11 @@ class NewsDbProvider {
   init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items.db");
-    db = await openDatabase(path, version: 1,
-        onCreate: (Database newDb, int version) {
-      newDb.execute(""" 
+    db = await openDatabase(
+      path,
+      version: 1,
+      onCreate: (Database newDb, int version) {
+        newDb.execute(""" 
       CREATE TABLE Items
         (
           id INTEGER PRIMARY KEY,
@@ -30,6 +32,20 @@ class NewsDbProvider {
           descendants INTEGER
         )
       """);
-    });
+      },
+    );
+  }
+
+  fetchItem(int id) async {
+    final maps = await db.query(
+      "Items",
+      columns: null,
+      where: "id = ?",
+      whereArgs: [id],
+    );
+
+    if (maps.length > 0) {}
+
+    return null;
   }
 }
