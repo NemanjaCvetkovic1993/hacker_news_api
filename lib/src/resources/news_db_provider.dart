@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:hackernewsapi/src/models/item_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -44,8 +45,14 @@ class NewsDbProvider {
       whereArgs: [id],
     );
 
-    if (maps.length > 0) {}
+    if (maps.length > 0) {
+      return ItemModel.fromDb(maps.first);
+    }
 
     return null;
+  }
+
+  addItem(ItemModel item) {
+    return db.insert("Items", item.toMapForDb());
   }
 }
