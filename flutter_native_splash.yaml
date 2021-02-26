@@ -1,0 +1,6 @@
+flutter_native_splash:
+  image: assets/images/yellow_bottle_02.png
+  color: "424242"
+
+  # TO MAKE CHANGES, TYPE THIS IN YOUR TERMINAL:
+  # flutter pub run flutter_native_splash:create
